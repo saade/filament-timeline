@@ -1,15 +1,15 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Saade\FilamentTimeline;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class SkeletonPlugin implements Plugin
+class FilamentTimelinePlugin implements Plugin
 {
     public function getId(): string
     {
-        return 'skeleton';
+        return 'filament-timeline';
     }
 
     public function register(Panel $panel): void
