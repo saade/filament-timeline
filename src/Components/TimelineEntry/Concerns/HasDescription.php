@@ -11,7 +11,13 @@ trait HasDescription
 
     public function getDescription(): string | Htmlable | null
     {
-        return $this->evaluate($this->description, [
+        $description = $this->description;
+
+        if (is_string($description) && $this->isStateProperty($description)) {
+            return data_get($this->getState(), $description);
+        }
+
+        return $this->evaluate($description, [
             'state' => $this->getState(),
         ]);
     }

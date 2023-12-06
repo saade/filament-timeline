@@ -5,7 +5,7 @@
 @props([
     'avatar',
     'size' => Size::Large,
-    'icon' => Size::Medium,
+    'icon' => null,
     'iconColor' => 'gray',
 ])
 

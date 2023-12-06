@@ -23,6 +23,12 @@ trait HasIcon
 
     public function getIcon(): ?string
     {
+        $icon = $this->icon;
+
+        if (is_string($icon) && $this->isStateProperty($icon)) {
+            return data_get($this->getState(), $icon);
+        }
+
         return $this->getBaseIcon($this->getState());
     }
 

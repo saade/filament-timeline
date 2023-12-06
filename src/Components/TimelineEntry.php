@@ -4,30 +4,44 @@ namespace Saade\FilamentTimeline\Components;
 
 use Closure;
 use Filament\Infolists\Components\Entry;
+use Illuminate\Database\Eloquent\Model;
 
 class TimelineEntry extends Entry
 {
     protected string $view = 'filament-timeline::timeline';
 
-    protected TimelineEntry\Marker | Closure | null $marker = null;
-
     public function marker(TimelineEntry\Marker | Closure $marker = null): static
     {
-        $this->marker = $marker;
+        $this->childComponents([$marker]);
 
         return $this;
     }
 
-    public function getMarker(array $state): ?TimelineEntry\Marker
+    /**
+     * @return array<ComponentContainer>
+     */
+    public function getChildComponentContainers(bool $withHidden = false): array
     {
-        $marker = $this->evaluate($this->marker);
-
-        if (! $marker) {
-            return null;
+        if ((! $withHidden) && $this->isHidden()) {
+            return [];
         }
 
-        $marker->state($state);
+        $containers = [];
 
-        return $marker;
+        foreach ($this->getState() ?? [] as $itemKey => $itemData) {
+            $container = $this
+                ->getChildComponentContainer()
+                ->getClone()
+                ->statePath($itemKey)
+                ->inlineLabel(false);
+
+            if ($itemData instanceof Model) {
+                $container->record($itemData);
+            }
+
+            $containers[$itemKey] = $container;
+        }
+
+        return $containers;
     }
 }

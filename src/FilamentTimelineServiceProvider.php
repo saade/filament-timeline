@@ -2,10 +2,8 @@
 
 namespace Saade\FilamentTimeline;
 
-use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -30,7 +28,6 @@ class FilamentTimelineServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        // Asset Registration
         FilamentAsset::register(
             $this->getAssets(),
             $this->getAssetPackageName()
@@ -48,9 +45,7 @@ class FilamentTimelineServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('filament-timeline', __DIR__ . '/../resources/dist/components/filament-timeline.js'),
             Css::make('filament-timeline-styles', __DIR__ . '/../resources/dist/filament-timeline.css'),
-            Js::make('filament-timeline-scripts', __DIR__ . '/../resources/dist/filament-timeline.js'),
         ];
     }
 }

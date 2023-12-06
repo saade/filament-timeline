@@ -2,46 +2,53 @@
 
 namespace Saade\FilamentTimeline\Components\TimelineEntry;
 
-use Closure;
-use Filament\Infolists\Components\Component;
-use Filament\Infolists\Components\Concerns as Infolists;
+use Filament\Infolists\Components\Entry;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
-class Marker extends Component
+class Marker extends Entry
 {
     use Concerns\HasAvatar;
     use Concerns\HasColor;
     use Concerns\HasDescription;
+    use Concerns\HasHint;
     use Concerns\HasIcon;
-    use Infolists\HasHelperText;
-    use Infolists\HasHint;
+    use Concerns\HasLabel;
 
-    protected Content | Closure | null $content = null;
+    protected string $view = 'filament-timeline::marker';
 
-    public static function make(): static
+    protected string $viewIdentifier = 'marker';
+
+    public static function make(string $name = null): static
     {
-        $static = app(static::class);
+        $static = app(static::class, ['name' => '']);
         $static->configure();
 
         return $static;
     }
 
-    public function content(Content | Closure $content = null): static
+    public function getState(): mixed
     {
-        $this->content = $content;
+        if ($this->getStateUsing !== null) {
+            $state = $this->evaluate($this->getStateUsing);
+        } else {
+            $state = data_get($this->getContainer()->getState(), $this->getStatePath());
 
-        return $this;
-    }
-
-    public function getContent(array $state): ?Content
-    {
-        $content = $this->evaluate($this->content);
-
-        if (! $content) {
-            return null;
+            $state = $state instanceof Model ? $this->getStateFromRecord($state) : $state;
         }
 
-        $content->state($state);
+        if (blank($state)) {
+            $state = $this->getDefaultState();
+        }
 
-        return $content;
+        return $state;
+    }
+
+    public function isStateProperty(string $property): bool
+    {
+        return in_array(
+            $property,
+            array_keys(Arr::dot($this->getState()))
+        );
     }
 }

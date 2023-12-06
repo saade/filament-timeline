@@ -27,15 +27,21 @@ trait HasAvatar
 
     public function getAvatar(): ?string
     {
-        return $this->evaluate($this->avatar, [
-            'state' => $this->getState(),
-        ]);
+        $avatar = $this->avatar;
+
+        if (filter_var($avatar, FILTER_VALIDATE_URL)) {
+            return $avatar;
+        }
+
+        if (is_string($avatar) && $this->isStateProperty($avatar)) {
+            return data_get($this->getState(), $avatar);
+        }
+
+        return $this->evaluate($avatar);
     }
 
     public function getAvatarSize(): Size | string | null
     {
-        return $this->evaluate($this->avatarSize, [
-            'state' => $this->getState(),
-        ]);
+        return $this->evaluate($this->avatarSize);
     }
 }

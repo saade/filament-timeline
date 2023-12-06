@@ -4,11 +4,15 @@
 
 <x-dynamic-component :component="$getEntryWrapperView()" :entry="$entry">
     <div class="flow-root">
-        <ul role="list" class="-mb-8 space-y-2">
-            @forelse($arrayState as $state)
-                <x-filament-timeline::marker :marker="$getMarker($state)" :last="$loop->last" />
-            @empty
-            @endforelse
-        </ul>
+         @if (count($childComponentContainers = $getChildComponentContainers()))
+            <ul role="list" class="-mb-8 space-y-2">
+                @forelse($childComponentContainers as $container)
+                    <li class="group">
+                        {{ $container }}
+                    </li>
+                @empty
+                @endforelse
+            </ul>
+        @endif
     </div>
 </x-dynamic-component>
