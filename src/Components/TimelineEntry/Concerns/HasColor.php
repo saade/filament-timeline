@@ -12,12 +12,6 @@ trait HasColor
 
     public function getColor(): ?string
     {
-        $color = $this->color;
-
-        if (is_string($color) && $this->isStateProperty($color)) {
-            return data_get($this->getState(), $color);
-        }
-
         return $this->getBaseColor($this->getState());
     }
 }

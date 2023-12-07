@@ -15,8 +15,8 @@ trait HasLabel
     {
         $label = $this->label;
 
-        if (is_string($label) && $this->isStateProperty($label)) {
-            return data_get($this->getState(), $label);
+        if (is_string($label)) {
+            return $label;
         }
 
         return $this->getBaseLabel();

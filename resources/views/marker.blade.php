@@ -71,18 +71,26 @@
                     @endif
                 </div>
 
-                @if (filled($helperText = $marker->getHelperText()))
-                    <div class="mt-0.5 text-sm text-gray-500">
+                @if ($helperText = $marker->getHelperText())
+                    <div class="text-sm text-gray-500">
                         {{ $helperText }}
                     </div>
                 @endif
             </div>
-            
-            @if(filled($description = $marker->getDescription()))
-                <p class="text-sm leading-6 text-gray-500 dark:text-gray-400">
-                    {{ $description }}
-                </p>
-            @endif
+
+            <div class="px-2 py-1">
+                @if($description = $marker->getDescription())
+                    <p class="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                        {{ $description }}
+                    </p>
+                @endif
+                
+                @if($content = $marker->getContent())
+                    <div class="mt-2">
+                        {{ $content }}
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 </div>

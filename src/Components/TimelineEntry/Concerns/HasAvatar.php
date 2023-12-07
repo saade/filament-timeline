@@ -29,12 +29,8 @@ trait HasAvatar
     {
         $avatar = $this->avatar;
 
-        if (filter_var($avatar, FILTER_VALIDATE_URL)) {
+        if (is_string($avatar)) {
             return $avatar;
-        }
-
-        if (is_string($avatar) && $this->isStateProperty($avatar)) {
-            return data_get($this->getState(), $avatar);
         }
 
         return $this->evaluate($avatar);

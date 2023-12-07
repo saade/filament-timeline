@@ -15,8 +15,8 @@ trait HasHint
     {
         $hint = $this->hint;
 
-        if (is_string($hint) && $this->isStateProperty($hint)) {
-            return data_get($this->getState(), $hint);
+        if (is_string($hint)) {
+            return $hint;
         }
 
         return $this->evaluate($hint);

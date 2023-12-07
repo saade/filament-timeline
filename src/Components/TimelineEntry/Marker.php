@@ -2,9 +2,9 @@
 
 namespace Saade\FilamentTimeline\Components\TimelineEntry;
 
+use Closure;
 use Filament\Infolists\Components\Entry;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 class Marker extends Entry
 {
@@ -19,12 +19,31 @@ class Marker extends Entry
 
     protected string $viewIdentifier = 'marker';
 
+    protected Marker\Content | Closure | null $content = null;
+
     public static function make(string $name = null): static
     {
         $static = app(static::class, ['name' => '']);
         $static->configure();
 
         return $static;
+    }
+
+    public function content(Marker\Content | Closure $content): static
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * @return Marker\Content
+     */
+    public function getContent()
+    {
+        return $this->evaluate($this->content, [
+            'state' => $this->getState(),
+        ]);
     }
 
     public function getState(): mixed
@@ -42,13 +61,5 @@ class Marker extends Entry
         }
 
         return $state;
-    }
-
-    public function isStateProperty(string $property): bool
-    {
-        return in_array(
-            $property,
-            array_keys(Arr::dot($this->getState()))
-        );
     }
 }
