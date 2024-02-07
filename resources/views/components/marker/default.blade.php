@@ -2,7 +2,7 @@
     'color' => 'gray',
 ])
 
-<div class="relative flex items-center justify-center flex-none w-2 h-2 mx-4 my-3 rounded-full ring-8 ring-white dark:ring-gray-900">
+<div class="relative flex items-center justify-center flex-none w-2 h-2 mx-4 my-3 rounded-full">
     <div
         @class([
             "h-2 w-2 rounded-full ring-2",

@@ -1,3 +1,7 @@
+@php
+    $contained = $marker->isContained();
+@endphp
+
 <div class="relative pb-8">
     <span class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-white/20 group-last:hidden" aria-hidden="true"></span>
 
@@ -37,7 +41,12 @@
             @endif
         </div>
 
-        <div class="flex-1 min-w-0">
+        <div
+            @class([
+                'flex-1 min-w-0',
+                'rounded-xl bg-white shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-900 dark:ring-white/10 px-6 py-4' => $contained,
+            ]) 
+        >
             <div>
                 <div class="flex items-center justify-between gap-x-3">
 
@@ -78,7 +87,7 @@
                 @endif
             </div>
 
-            <div class="px-2 py-1">
+            <div class="py-2">
                 @if($description = $marker->getDescription())
                     <p class="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
                         {{ $description }}

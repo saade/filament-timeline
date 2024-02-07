@@ -21,6 +21,8 @@ class Marker extends Entry
 
     protected Marker\Content | Closure | null $content = null;
 
+    protected bool $contained = false;
+
     public static function make(string $name = null): static
     {
         $static = app(static::class, ['name' => '']);
@@ -44,6 +46,18 @@ class Marker extends Entry
         return $this->evaluate($this->content, [
             'state' => $this->getState(),
         ]);
+    }
+
+    public function contained(bool $condition = true): static
+    {
+        $this->contained = $condition;
+
+        return $this;
+    }
+
+    public function isContained(): bool
+    {
+        return $this->contained;
     }
 
     public function getState(): mixed

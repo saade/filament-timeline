@@ -10,7 +10,7 @@
 <img
     src="{{ $avatar }}"
     @class([
-        'flex items-center justify-center bg-gray-400 rounded-full ring-8 ring-white dark:ring-gray-900',
+        'flex items-center justify-center bg-gray-400 rounded-full',
         match ($size) {
             Size::ExtraSmall, 'xs', Size::Small, 'sm' => 'fi-in-timeline-marker-avatar-size-sm h-6 w-6',
             Size::Medium, 'md' => 'fi-in-timeline-marker-avatar-size-md h-8 w-8',
