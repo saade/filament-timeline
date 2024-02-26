@@ -3,7 +3,11 @@
 @endphp
 
 <x-dynamic-component :component="$getEntryWrapperView()" :entry="$entry">
-    <div class="flow-root">
+    <div
+        class="flow-root"
+        ax-load="visible"
+        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getScriptSrc('filament-timeline-scripts', 'saade/filament-timeline') }}"
+    >
          @if (count($childComponentContainers = $getChildComponentContainers()))
             <ul role="list" class="-mb-8 space-y-2">
                 @forelse($childComponentContainers as $container)

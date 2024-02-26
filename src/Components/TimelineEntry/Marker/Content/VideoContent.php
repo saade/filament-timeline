@@ -7,6 +7,7 @@ use Saade\FilamentTimeline\Components\TimelineEntry\Marker\Content\Media\Video;
 
 class VideoContent extends Content
 {
+    use Concerns\HasLightbox;
     use Concerns\HasText;
 
     protected string $view = 'filament-timeline::content.video';

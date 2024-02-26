@@ -4,6 +4,7 @@ namespace Saade\FilamentTimeline;
 
 use Filament\Support\Assets\Asset;
 use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -46,6 +47,7 @@ class FilamentTimelineServiceProvider extends PackageServiceProvider
     {
         return [
             Css::make('filament-timeline-styles', __DIR__ . '/../resources/dist/filament-timeline.css'),
+            Js::make('filament-timeline-scripts', __DIR__ . '/../resources/dist/filament-timeline.js'),
         ];
     }
 }

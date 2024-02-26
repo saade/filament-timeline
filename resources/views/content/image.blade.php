@@ -5,15 +5,25 @@
 
     <ul role="list" class="grid grid-cols-2 mt-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         @foreach($content->getImages() as $image)
+            @capture($object)
+                <img
+                    src="{{ $image->getSrc() }}"
+                    @if($alt = $image->getAlt())
+                        alt="{{ $alt }}"
+                    @endif
+                    class="object-cover pointer-events-none"
+                />
+            @endcapture
+            
             <li class="relative">
                 <div class="block w-full overflow-hidden bg-gray-100 rounded-lg aspect-1">
-                    <img
-                        src="{{ $image->getSrc() }}"
-                        @if($alt = $image->getAlt())
-                            alt="{{ $alt }}"
-                        @endif
-                        class="object-cover pointer-events-none"
-                    />
+                    @if($hasLightbox())
+                        <a href="{{ $image->getSrc() }}" target="_blank" class="glightbox" data-gallery="{{ $getGallery() }}">
+                            {{ $object() }}
+                        </a>
+                    @else
+                        {{ $object() }}
+                    @endif
                 </div>
                 
                 <div class="flex justify-between mt-2">
