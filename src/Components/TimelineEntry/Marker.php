@@ -2,15 +2,15 @@
 
 namespace Saade\FilamentTimeline\Components\TimelineEntry;
 
-use Closure;
 use Filament\Infolists\Components\Entry;
-use Illuminate\Database\Eloquent\Model;
+use Filament\Support\Concerns\CanBeContained;
 
 class Marker extends Entry
 {
+    use CanBeContained;
     use Concerns\HasAvatar;
     use Concerns\HasColor;
-    use Concerns\HasDescription;
+    use Concerns\HasContent;
     use Concerns\HasHint;
     use Concerns\HasIcon;
     use Concerns\HasLabel;
@@ -19,61 +19,11 @@ class Marker extends Entry
 
     protected string $viewIdentifier = 'marker';
 
-    protected Marker\Content | Closure | null $content = null;
-
-    protected bool | Closure $contained = false;
-
     public static function make(string $name = null): static
     {
         $static = app(static::class, ['name' => '']);
         $static->configure();
 
         return $static;
-    }
-
-    public function content(Marker\Content | Closure $content): static
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * @return Marker\Content
-     */
-    public function getContent()
-    {
-        return $this->evaluate($this->content, [
-            'state' => $this->getState(),
-        ]);
-    }
-
-    public function contained(bool | Closure $condition = true): static
-    {
-        $this->contained = $condition;
-
-        return $this;
-    }
-
-    public function isContained(): bool
-    {
-        return $this->evaluate($this->contained);
-    }
-
-    public function getState(): mixed
-    {
-        if ($this->getStateUsing !== null) {
-            $state = $this->evaluate($this->getStateUsing);
-        } else {
-            $state = data_get($this->getContainer()->getState(), $this->getStatePath());
-
-            $state = $state instanceof Model ? $this->getStateFromRecord($state) : $state;
-        }
-
-        if (blank($state)) {
-            $state = $this->getDefaultState();
-        }
-
-        return $state;
     }
 }

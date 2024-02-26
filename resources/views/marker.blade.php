@@ -87,13 +87,7 @@
                 @endif
             </div>
 
-            <div class="py-2">
-                @if($description = $marker->getDescription())
-                    <p class="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
-                        {{ $description }}
-                    </p>
-                @endif
-                
+            <div class="py-2">                
                 @if($content = $marker->getContent())
                     <div class="mt-2">
                         {{ $content }}

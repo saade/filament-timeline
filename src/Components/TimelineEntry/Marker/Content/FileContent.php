@@ -7,6 +7,8 @@ use Saade\FilamentTimeline\Components\TimelineEntry\Marker\Content\Media\File;
 
 class FileContent extends Content
 {
+    use Concerns\HasText;
+
     protected string $view = 'filament-timeline::content.file';
 
     protected array $files = [];
