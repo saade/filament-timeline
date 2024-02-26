@@ -21,7 +21,7 @@ class Marker extends Entry
 
     protected Marker\Content | Closure | null $content = null;
 
-    protected bool $contained = false;
+    protected bool | Closure $contained = false;
 
     public static function make(string $name = null): static
     {
@@ -48,7 +48,7 @@ class Marker extends Entry
         ]);
     }
 
-    public function contained(bool $condition = true): static
+    public function contained(bool | Closure $condition = true): static
     {
         $this->contained = $condition;
 
@@ -57,7 +57,7 @@ class Marker extends Entry
 
     public function isContained(): bool
     {
-        return $this->contained;
+        return $this->evaluate($this->contained);
     }
 
     public function getState(): mixed
