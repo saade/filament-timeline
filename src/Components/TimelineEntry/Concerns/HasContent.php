@@ -16,10 +16,18 @@ trait HasContent
         return $this;
     }
 
-    public function getContent(): Content
+    public function getContent(): ?Content
     {
-        return $this->evaluate($this->content, [
+        $content = $this->evaluate($this->content, [
             'state' => $this->getState(),
         ]);
+
+        if (! $content) {
+            return null;
+        }
+
+        return $content
+            ->container($this->getContainer())
+            ->state($this->getState());
     }
 }
