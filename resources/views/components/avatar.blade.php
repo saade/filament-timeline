@@ -1,5 +1,5 @@
 @php
-    use Saade\FilamentTimeline\Components\TimelineEntry\Enums\Size;
+    use Saade\FilamentTimeline\Enums\Size;
 @endphp
 
 @props([
@@ -10,7 +10,7 @@
 <img
     src="{{ $avatar }}"
     @class([
-        'flex items-center justify-center bg-gray-400 rounded-full',
+        'fi-timeline-avatar flex items-center justify-center bg-gray-400 rounded-full',
         match ($size) {
             Size::ExtraSmall, 'xs', Size::Small, 'sm' => 'fi-in-timeline-marker-avatar-size-sm h-6 w-6',
             Size::Medium, 'md' => 'fi-in-timeline-marker-avatar-size-md h-8 w-8',

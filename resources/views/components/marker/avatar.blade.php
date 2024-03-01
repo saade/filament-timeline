@@ -1,5 +1,5 @@
 @php
-    use Saade\FilamentTimeline\Components\TimelineEntry\Enums\Size;
+    use Saade\FilamentTimeline\Enums\Size;
 @endphp
 
 @props([
@@ -9,7 +9,7 @@
     'iconColor' => 'gray',
 ])
 
-<div class="relative">
+<div class="fi-timeline-marker-avatar relative">
     <x-filament-timeline::avatar :avatar="$avatar" :size="$size" />
 
     @if ($icon)
@@ -17,7 +17,7 @@
             <x-filament-timeline::icon
                 :icon="$icon"
                 :color="$iconColor"
-                :size="\Saade\FilamentTimeline\Components\TimelineEntry\Enums\Size::Small"
+                :size="Size::Small"
             />
         </span>
     @endif

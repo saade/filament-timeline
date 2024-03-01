@@ -1,6 +1,6 @@
 <?php
 
-namespace Saade\FilamentTimeline\Components\TimelineEntry\Enums;
+namespace Saade\FilamentTimeline\Enums;
 
 enum Size
 {

@@ -4,7 +4,7 @@ namespace Saade\FilamentTimeline\Components\TimelineEntry\Concerns;
 
 use Closure;
 use Filament\Infolists\Components\Concerns\HasIcon as BaseHasIcon;
-use Saade\FilamentTimeline\Components\TimelineEntry\Enums\Size;
+use Saade\FilamentTimeline\Enums\Size;
 
 trait HasIcon
 {

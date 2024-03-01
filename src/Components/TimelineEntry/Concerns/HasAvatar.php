@@ -3,7 +3,7 @@
 namespace Saade\FilamentTimeline\Components\TimelineEntry\Concerns;
 
 use Closure;
-use Saade\FilamentTimeline\Components\TimelineEntry\Enums\Size;
+use Saade\FilamentTimeline\Enums\Size;
 
 trait HasAvatar
 {
@@ -11,7 +11,7 @@ trait HasAvatar
 
     protected string | Closure | null $avatar = null;
 
-    public function avatar(string | Closure | null $avatar): static
+    public function avatar(string | Closure $avatar = null): static
     {
         $this->avatar = $avatar;
 

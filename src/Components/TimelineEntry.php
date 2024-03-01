@@ -7,14 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TimelineEntry extends Entry
 {
-    protected string $view = 'filament-timeline::timeline';
-
-    public function marker(TimelineEntry\Marker $marker): static
-    {
-        $this->childComponents([$marker]);
-
-        return $this;
-    }
+    protected string $view = 'filament-timeline::timeline-entry';
 
     /**
      * @return array<ComponentContainer>
@@ -31,6 +24,7 @@ class TimelineEntry extends Entry
             $container = $this
                 ->getChildComponentContainer()
                 ->getClone()
+                ->view('filament-timeline::component-container')
                 ->statePath($itemKey)
                 ->inlineLabel(false);
 

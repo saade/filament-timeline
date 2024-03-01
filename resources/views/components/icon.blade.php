@@ -1,5 +1,5 @@
 @php
-    use Saade\FilamentTimeline\Components\TimelineEntry\Enums\Size;
+    use Saade\FilamentTimeline\Enums\Size;
 @endphp
 
 @props([
@@ -11,7 +11,7 @@
 <x-filament::icon
     :icon="$icon"
     @class([
-        'fi-in-timeline-marker-icon',
+        'fi-in-timeline-icon',
         match ($size) {
             Size::ExtraSmall, 'xs' => 'fi-in-timeline-marker-icon-size-xs h-3 w-3',
             Size::Small, 'sm' => 'fi-in-timeline-marker-icon-size-sm h-4 w-4',

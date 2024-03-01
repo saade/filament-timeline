@@ -2,10 +2,6 @@
 
 namespace Saade\FilamentTimeline;
 
-use Filament\Support\Assets\Asset;
-use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Js;
-use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -21,33 +17,5 @@ class FilamentTimelineServiceProvider extends PackageServiceProvider
             ->name(static::$name)
             ->hasTranslations()
             ->hasViews(static::$viewNamespace);
-    }
-
-    public function packageRegistered(): void
-    {
-    }
-
-    public function packageBooted(): void
-    {
-        FilamentAsset::register(
-            $this->getAssets(),
-            $this->getAssetPackageName()
-        );
-    }
-
-    protected function getAssetPackageName(): ?string
-    {
-        return 'saade/filament-timeline';
-    }
-
-    /**
-     * @return array<Asset>
-     */
-    protected function getAssets(): array
-    {
-        return [
-            Css::make('filament-timeline-styles', __DIR__ . '/../resources/dist/filament-timeline.css'),
-            Js::make('filament-timeline-scripts', __DIR__ . '/../resources/dist/filament-timeline.js'),
-        ];
     }
 }
