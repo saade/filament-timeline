@@ -4,6 +4,7 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/saade/filament-timeline/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/saade/filament-timeline/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/saade/filament-timeline/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/saade/filament-timeline/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/saade/filament-timeline.svg?style=flat-square)](https://packagist.org/packages/saade/filament-timeline)
+[![Plumb score](https://plumbphp.dev/badges/saade/filament-timeline/composite.svg)](https://plumbphp.dev/saade/filament-timeline)
 
 
 
